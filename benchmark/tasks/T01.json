@@ -1,0 +1,57 @@
+{
+  "id": "T01",
+  "status": "draft",
+  "type": "identify_bug",
+  "difficulty": "medium",
+  "title": "Minimum rotations to a repeated string",
+  "prompt": "Specification: Given a non-empty string s, return the smallest positive k such that rotating s left by k positions gives s again. For example, 'aaaa' needs 1 rotation and 'abc' needs 3. The function below is intended to satisfy this specification. Does it contain a bug? If yes, give the line number of the faulty statement (1-based, counting the `def` line as line 1). If the bug spans several lines, give the first line of the faulty statement. If there is no bug, set the line to null.",
+  "code": "def find_Rotations(str): \n    tmp = str + str\n    n = len(str) \n    for i in range(1,n + 1): \n        substring = tmp[i: i+n] \n        if (str == substring): \n            return n \n    return n\n",
+  "response_schema": {
+    "widget": "bug_form",
+    "fields": {
+      "has_bug": "boolean",
+      "line": "integer|null (1-based, required when has_bug is true)"
+    }
+  },
+  "canonical": {
+    "has_bug": true,
+    "line": 7
+  },
+  "accepted_equivalence": [
+    {
+      "has_bug": true,
+      "line": 7
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "A test that exposes the defect",
+      "body": "Test: assert find_Rotations(\"aaaa\") == 1\nExpected: 1\nActual: 4",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "I found a bug on line 7.",
+    "structured": {
+      "has_bug": true,
+      "line": 7
+    },
+    "correct": true,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 9. Returns the full length instead of the first matching rotation. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

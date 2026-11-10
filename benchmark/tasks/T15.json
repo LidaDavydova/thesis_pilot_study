@@ -1,0 +1,109 @@
+{
+  "id": "T15",
+  "status": "draft",
+  "type": "select_impl",
+  "difficulty": "low",
+  "title": "Sum of common divisors",
+  "prompt": "Specification: For integers a, b >= 2, return the sum of every positive integer that divides both a and b. Four candidate implementations follow. Which candidate satisfies the specification for all valid inputs? Select one candidate.",
+  "code": "",
+  "response_schema": {
+    "widget": "candidate_select",
+    "fields": {
+      "candidate": "string (one of the candidate ids)"
+    }
+  },
+  "canonical": {
+    "candidate": "A"
+  },
+  "accepted_equivalence": [
+    {
+      "candidate": "A"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "execution_table",
+      "title": "Candidate executions against the test suite",
+      "body": "Each candidate was executed against the same test suite.\n\nTest 1: assert sum(10,15) == 6\nTest 2: assert sum(100,150) == 93\nTest 3: assert sum(4,6) == 3\nTest 4: assert sum(4,8) == 7",
+      "table": {
+        "columns": [
+          "Candidate",
+          "Test 1",
+          "Test 2",
+          "Test 3",
+          "Test 4"
+        ],
+        "rows": [
+          [
+            "A",
+            "pass",
+            "pass",
+            "pass",
+            "pass"
+          ],
+          [
+            "B",
+            "fail",
+            "fail",
+            "fail",
+            "pass"
+          ],
+          [
+            "C",
+            "fail",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "D",
+            "fail",
+            "fail",
+            "fail",
+            "fail"
+          ]
+        ]
+      },
+      "decisiveness": "decisive"
+    }
+  ],
+  "recommendation": {
+    "text": "Candidate A satisfies the specification.",
+    "structured": {
+      "candidate": "A"
+    },
+    "correct": true,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 126. The original range omits min(a,b); the corrected candidate includes it, and the test (4,8) separates them. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "code": "def sum(a,b): \n    sum = 0\n    for i in range (1,min(a,b) + 1): \n        if (a % i == 0 and b % i == 0): \n            sum += i \n    return sum\n"
+    },
+    {
+      "id": "B",
+      "code": "def sum(a,b): \n    sum = 0\n    for i in range (1,min(a,b) + 1): \n        if (a % i == 0 or b % i == 0): \n            sum += i \n    return sum\n"
+    },
+    {
+      "id": "C",
+      "code": "def sum(a,b): \n    sum = 0\n    for i in range (1,min(a,b) + 1): \n        if True: \n            sum += i \n    return sum\n"
+    },
+    {
+      "id": "D",
+      "code": "def sum(a,b): \n    sum = 0\n    for i in range (1,min(a,b) + 1): \n        if (i % 2 == 0): \n            sum += i \n    return sum\n"
+    }
+  ]
+}

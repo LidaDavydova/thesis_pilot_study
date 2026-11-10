@@ -1,0 +1,99 @@
+{
+  "id": "T13",
+  "status": "draft",
+  "type": "select_impl",
+  "difficulty": "low",
+  "title": "Sorting a mixed list",
+  "prompt": "Specification: Return a new list containing all integers from the input in ascending order, followed by all strings in ascending order. The input contains only integers and strings. Four candidate implementations follow. Which candidate satisfies the specification for all valid inputs? Select one candidate.",
+  "code": "",
+  "response_schema": {
+    "widget": "candidate_select",
+    "fields": {
+      "candidate": "string (one of the candidate ids)"
+    }
+  },
+  "canonical": {
+    "candidate": "B"
+  },
+  "accepted_equivalence": [
+    {
+      "candidate": "B"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "execution_table",
+      "title": "Candidate executions against the test suite",
+      "body": "Each candidate was executed against the same test suite.\n\nTest 1: assert sort_mixed_list([19,'red',12,'green','blue', 10,'white','green',1])==[1, 10, 12, 19, 'blue', 'green', 'green', 'red', 'white']\nTest 2: assert sort_mixed_list([2,'b',1,'a']) == [1, 2, 'a', 'b']",
+      "table": {
+        "columns": [
+          "Candidate",
+          "Test 1",
+          "Test 2"
+        ],
+        "rows": [
+          [
+            "A",
+            "fail",
+            "fail"
+          ],
+          [
+            "B",
+            "pass",
+            "pass"
+          ],
+          [
+            "C",
+            "fail",
+            "fail"
+          ],
+          [
+            "D",
+            "fail",
+            "fail"
+          ]
+        ]
+      },
+      "decisiveness": "decisive"
+    }
+  ],
+  "recommendation": {
+    "text": "Candidate A satisfies the specification.",
+    "structured": {
+      "candidate": "A"
+    },
+    "correct": false,
+    "source": "perturbed_model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 37.  Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": true,
+    "needs_review": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "code": "def sort_mixed_list(mixed_list):\n    int_part = sorted([i for i in mixed_list if type(i) is int])\n    str_part = sorted([i for i in mixed_list if type(i) is str])\n    return str_part + int_part\n"
+    },
+    {
+      "id": "B",
+      "code": "def sort_mixed_list(mixed_list):\n    int_part = sorted([i for i in mixed_list if type(i) is int])\n    str_part = sorted([i for i in mixed_list if type(i) is str])\n    return int_part + str_part\n"
+    },
+    {
+      "id": "C",
+      "code": "def sort_mixed_list(mixed_list):\n    int_part = sorted([i for i in mixed_list if type(i) is int])\n    str_part = sorted([i for i in mixed_list if type(i) is str])\n    return sorted(mixed_list)\n"
+    },
+    {
+      "id": "D",
+      "code": "def sort_mixed_list(mixed_list):\n    int_part = sorted([i for i in mixed_list if type(i) is int])\n    str_part = sorted([i for i in mixed_list if type(i) is str])\n    return int_part\n"
+    }
+  ]
+}

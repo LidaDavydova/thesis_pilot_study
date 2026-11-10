@@ -1,0 +1,57 @@
+{
+  "id": "T04",
+  "status": "draft",
+  "type": "identify_bug",
+  "difficulty": "high",
+  "title": "Longest substring with more zeros",
+  "prompt": "Specification: Given a binary string and its length n, return the maximum over all substrings of (number of zeros minus number of ones). Return 0 if every substring has a non-positive difference. The function below is intended to satisfy this specification. Does it contain a bug? If yes, give the line number of the faulty statement (1-based, counting the `def` line as line 1). If the bug spans several lines, give the first line of the faulty statement. If there is no bug, set the line to null.",
+  "code": "def find_length(string, n): \n    current_sum = 0\n    max_sum = 0\n    for i in range(n): \n        current_sum += (1 if string[i] == '1' else -1) \n        if current_sum < 0: \n            current_sum = 0\n        max_sum = max(current_sum, max_sum) \n    return max_sum if max_sum else 0\n",
+  "response_schema": {
+    "widget": "bug_form",
+    "fields": {
+      "has_bug": "boolean",
+      "line": "integer|null (1-based, required when has_bug is true)"
+    }
+  },
+  "canonical": {
+    "has_bug": true,
+    "line": 5
+  },
+  "accepted_equivalence": [
+    {
+      "has_bug": true,
+      "line": 5
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "A test that exposes the defect",
+      "body": "Test: assert find_length(\"11000010001\", 11) == 6\nExpected: 6\nActual: 2",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "I found a bug on line 6.",
+    "structured": {
+      "has_bug": true,
+      "line": 6
+    },
+    "correct": false,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 125. The score is inverted: ones count +1 and zeros count -1. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

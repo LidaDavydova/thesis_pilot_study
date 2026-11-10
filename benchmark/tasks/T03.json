@@ -1,0 +1,57 @@
+{
+  "id": "T03",
+  "status": "draft",
+  "type": "identify_bug",
+  "difficulty": "high",
+  "title": "Contiguous sublist check",
+  "prompt": "Specification: Return True if and only if s appears as a contiguous sublist of l. An empty s is a sublist of every list, and a sublist longer than l cannot match. The function below is intended to satisfy this specification. Does it contain a bug? If yes, give the line number of the faulty statement (1-based, counting the `def` line as line 1). If the bug spans several lines, give the first line of the faulty statement. If there is no bug, set the line to null.",
+  "code": "def is_sublist(l, s):\n    sub_set = False\n    if s == []:\n        sub_set = True\n    elif s == l:\n        sub_set = True\n    elif len(s) > len(l):\n        sub_set = False\n    else:\n        for i in range(len(l)):\n            if l[i] == s[0]:\n                n = 1\n                while (n < len(s)) and (l[i+n] == s[n]):\n                    n += 1              \n                if n == 1:\n                    sub_set = True\n    return sub_set\n",
+  "response_schema": {
+    "widget": "bug_form",
+    "fields": {
+      "has_bug": "boolean",
+      "line": "integer|null (1-based, required when has_bug is true)"
+    }
+  },
+  "canonical": {
+    "has_bug": true,
+    "line": 15
+  },
+  "accepted_equivalence": [
+    {
+      "has_bug": true,
+      "line": 15
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "A test that exposes the defect",
+      "body": "Test: assert is_sublist([2,4,3,5,7],[3,7])==False\nExpected: False\nActual: True",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "I found a bug on line 15.",
+    "structured": {
+      "has_bug": true,
+      "line": 15
+    },
+    "correct": true,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 69. Accepts a match after the first element instead of the whole sublist. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

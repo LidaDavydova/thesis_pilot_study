@@ -1,0 +1,109 @@
+{
+  "id": "T18",
+  "status": "draft",
+  "type": "select_impl",
+  "difficulty": "high",
+  "title": "First occurrence in a sorted array",
+  "prompt": "Specification: Given a sorted array arr of length n and a value x, return the index of the first occurrence of x, or -1 if x is absent. Four candidate implementations follow. Which candidate satisfies the specification for all valid inputs? Select one candidate.",
+  "code": "",
+  "response_schema": {
+    "widget": "candidate_select",
+    "fields": {
+      "candidate": "string (one of the candidate ids)"
+    }
+  },
+  "canonical": {
+    "candidate": "C"
+  },
+  "accepted_equivalence": [
+    {
+      "candidate": "C"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "execution_table",
+      "title": "Candidate executions against the test suite",
+      "body": "Each candidate was executed against the same test suite.\n\nTest 1: assert first([1,2,3,4,5,6,6],6,6) == 5\nTest 2: assert first([1,1,1,2,3],1,5) == 0\nTest 3: assert first([1,2,3],1,3) == 0\nTest 4: assert first([1,2,3],4,3) == -1",
+      "table": {
+        "columns": [
+          "Candidate",
+          "Test 1",
+          "Test 2",
+          "Test 3",
+          "Test 4"
+        ],
+        "rows": [
+          [
+            "A",
+            "pass",
+            "fail",
+            "pass",
+            "pass"
+          ],
+          [
+            "B",
+            "pass",
+            "pass",
+            "pass",
+            "fail"
+          ],
+          [
+            "C",
+            "pass",
+            "pass",
+            "pass",
+            "pass"
+          ],
+          [
+            "D",
+            "fail",
+            "fail",
+            "fail",
+            "pass"
+          ]
+        ]
+      },
+      "decisiveness": "decisive"
+    }
+  ],
+  "recommendation": {
+    "text": "Candidate A satisfies the specification.",
+    "structured": {
+      "candidate": "A"
+    },
+    "correct": false,
+    "source": "perturbed_model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 195.  Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": true,
+    "needs_review": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "code": "def first(arr,x,n): \n    low = 0\n    high = n - 1\n    res = -1  \n    while (low <= high):\n        mid = (low + high) // 2 \n        if arr[mid] > x:\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            res = mid\n            low = mid + 1\n    return res\n"
+    },
+    {
+      "id": "B",
+      "code": "def first(arr,x,n): \n    low = 0\n    high = n - 1\n    res = -1  \n    while (low <= high):\n        mid = (low + high) // 2 \n        if arr[mid] > x:\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            res = mid\n            high = mid - 1\n    return mid\n"
+    },
+    {
+      "id": "C",
+      "code": "def first(arr,x,n): \n    low = 0\n    high = n - 1\n    res = -1  \n    while (low <= high):\n        mid = (low + high) // 2 \n        if arr[mid] > x:\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            res = mid\n            high = mid - 1\n    return res\n"
+    },
+    {
+      "id": "D",
+      "code": "def first(arr,x,n): \n    low = 0\n    high = n - 1\n    res = -1  \n    while (low <= high):\n        mid = (low + high) // 2 \n        if arr[mid] >= x:\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            res = mid\n            high = mid - 1\n    return res\n"
+    }
+  ]
+}

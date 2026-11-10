@@ -1,0 +1,57 @@
+{
+  "id": "T02",
+  "status": "draft",
+  "type": "identify_bug",
+  "difficulty": "medium",
+  "title": "Removing the first and last occurrence",
+  "prompt": "Specification: Given a string s and a character ch, remove the first and the last occurrence of ch. If ch occurs once, remove that occurrence. If ch does not occur, return s unchanged. The function below is intended to satisfy this specification. Does it contain a bug? If yes, give the line number of the faulty statement (1-based, counting the `def` line as line 1). If the bug spans several lines, give the first line of the faulty statement. If there is no bug, set the line to null.",
+  "code": "def remove_Occ(s,ch): \n    for i in range(len(s)): \n        if (s[i] == ch): \n            s = s[0 : i] + s[i + 2:] \n            break\n    for i in range(len(s) - 1,-1,-1):  \n        if (s[i] == ch): \n            s = s[0 : i] + s[i + 1:] \n            break\n    return s\n",
+  "response_schema": {
+    "widget": "bug_form",
+    "fields": {
+      "has_bug": "boolean",
+      "line": "integer|null (1-based, required when has_bug is true)"
+    }
+  },
+  "canonical": {
+    "has_bug": true,
+    "line": 4
+  },
+  "accepted_equivalence": [
+    {
+      "has_bug": true,
+      "line": 4
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "A test that exposes the defect",
+      "body": "Test: assert remove_Occ(\"abcda\",\"a\") == \"bcd\"\nExpected: 'bcd'\nActual: 'cd'",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "I found a bug on line 4.",
+    "structured": {
+      "has_bug": true,
+      "line": 4
+    },
+    "correct": true,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 11. The first removal skips two characters instead of one. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

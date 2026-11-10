@@ -1,0 +1,152 @@
+{
+  "model": "qwen3-8b-q8_0",
+  "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6",
+  "counts": {
+    "identify_bug": {
+      "correct": 3,
+      "incorrect": 3
+    },
+    "check_spec": {
+      "correct": 3,
+      "incorrect": 3
+    },
+    "select_impl": {
+      "correct": 3,
+      "incorrect": 3
+    }
+  },
+  "selection": {
+    "T01": {
+      "answer": {
+        "has_bug": true,
+        "line": 7
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T02": {
+      "answer": {
+        "has_bug": true,
+        "line": 4
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T03": {
+      "answer": {
+        "has_bug": true,
+        "line": 15
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T04": {
+      "answer": {
+        "has_bug": true,
+        "line": 6
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T05": {
+      "answer": {
+        "has_bug": true,
+        "line": 5
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T08": {
+      "answer": {
+        "compliant": true
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T10": {
+      "answer": {
+        "compliant": false
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T12": {
+      "answer": {
+        "compliant": false
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T13": {
+      "answer": {
+        "candidate": "A"
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T14": {
+      "answer": {
+        "candidate": "C"
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T15": {
+      "answer": {
+        "candidate": "A"
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T16": {
+      "answer": {
+        "candidate": "A"
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T17": {
+      "answer": {
+        "candidate": "B"
+      },
+      "correct": true,
+      "kind": "correct"
+    },
+    "T18": {
+      "answer": {
+        "candidate": "A"
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T06": {
+      "answer": {
+        "has_bug": true,
+        "line": 2
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T07": {
+      "answer": {
+        "compliant": false
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T09": {
+      "answer": {
+        "compliant": false
+      },
+      "correct": false,
+      "kind": "incorrect"
+    },
+    "T11": {
+      "answer": {
+        "compliant": false
+      },
+      "correct": false,
+      "kind": "incorrect"
+    }
+  }
+}

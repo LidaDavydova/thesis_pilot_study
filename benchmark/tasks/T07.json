@@ -1,0 +1,53 @@
+{
+  "id": "T07",
+  "status": "draft",
+  "type": "check_spec",
+  "difficulty": "high",
+  "title": "Minimum cost path in a grid",
+  "prompt": "Specification: Given a 3 x 3 cost matrix and a target position (m, n) with 0 <= m, n < 3, return the minimum total cost of a path from (0, 0) to (m, n), moving only right or down. The implementation below should satisfy this specification for all valid inputs. Does it? Answer COMPLIANT or NOT_COMPLIANT.",
+  "code": "R = 3\nC = 3\ndef min_cost(cost, m, n): \n    tc = [[0 for x in range(C)] for x in range(R)] \n    tc[0][0] = cost[0][0] \n    for i in range(1, m+1): \n        tc[i][0] = tc[i-1][0] + cost[i][0] \n    for j in range(1, n+1): \n        tc[0][j] = tc[0][j-1] + cost[0][j] \n    for i in range(1, m+1): \n        for j in range(1, n+1): \n            tc[i][j] = min(tc[i-1][j-1], tc[i-1][j], tc[i][j-1]) + cost[i][j] \n    return tc[m][n]\n",
+  "response_schema": {
+    "widget": "compliance_form",
+    "fields": {
+      "compliant": "boolean"
+    }
+  },
+  "canonical": {
+    "compliant": true
+  },
+  "accepted_equivalence": [
+    {
+      "compliant": true
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "The implementation passes the test suite",
+      "body": "PASS: assert min_cost([[1, 2, 3], [4, 8, 2], [1, 5, 3]], 2, 2) == 8\nPASS: assert min_cost([[2, 3, 4], [5, 9, 3], [2, 6, 4]], 2, 2) == 12\nPASS: assert min_cost([[3, 4, 5], [6, 10, 4], [3, 7, 5]], 2, 2) == 16",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "The implementation does not satisfy the specification.",
+    "structured": {
+      "compliant": false
+    },
+    "correct": false,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 1. Original implementation satisfies the specification. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

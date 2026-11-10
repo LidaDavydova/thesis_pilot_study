@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "annotator": "A",
+  "created": "2026-11-10T11:13:27",
+  "updated": "2026-11-10T12:04:16",
+  "cursor": "T04",
+  "ratings": {
+    "T01": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": true,
+      "note": "",
+      "updated": "2026-11-10T11:19:39"
+    },
+    "T02": {
+      "recommendation": "correct",
+      "plausibility": null,
+      "canonical_ok": true,
+      "note": "",
+      "updated": "2026-11-10T11:22:17"
+    },
+    "T03": {
+      "recommendation": "correct",
+      "plausibility": null,
+      "canonical_ok": true,
+      "note": "",
+      "updated": "2026-11-10T11:42:46"
+    },
+    "T04": {
+      "recommendation": "correct",
+      "plausibility": 4,
+      "canonical_ok": true,
+      "note": "",
+      "updated": "2026-11-10T12:04:12"
+    },
+    "T05": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T12": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T17": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T18": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T13": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T15": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T06": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T07": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T14": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T09": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T16": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T08": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T10": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    },
+    "T11": {
+      "recommendation": null,
+      "plausibility": null,
+      "canonical_ok": null,
+      "note": "",
+      "updated": null
+    }
+  },
+  "order_seed": 3336175722,
+  "order": [
+    "T04",
+    "T11",
+    "T03",
+    "T10",
+    "T08",
+    "T16",
+    "T09",
+    "T14",
+    "T07",
+    "T06",
+    "T02",
+    "T15",
+    "T13",
+    "T18",
+    "T17",
+    "T12",
+    "T01",
+    "T05"
+  ],
+  "intro_seen": true
+}

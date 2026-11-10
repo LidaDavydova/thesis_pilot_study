@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/pilot/benchmark/task.schema.json",
+  "title": "Pilot benchmark task",
+  "type": "object",
+  "required": [
+    "id",
+    "status",
+    "type",
+    "difficulty",
+    "title",
+    "prompt",
+    "code",
+    "response_schema",
+    "canonical",
+    "accepted_equivalence",
+    "evidence",
+    "recommendation",
+    "annotations",
+    "flags"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^T[0-9]{2}$"
+    },
+    "status": {
+      "enum": ["draft", "ready", "frozen"]
+    },
+    "type": {
+      "enum": ["identify_bug", "check_spec", "select_impl"]
+    },
+    "difficulty": {
+      "enum": ["low", "medium", "high"]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 10
+    },
+    "code": {
+      "type": "string"
+    },
+    "candidates": {
+      "type": "array",
+      "description": "Required only for select_impl tasks.",
+      "items": {
+        "type": "object",
+        "required": ["id", "code"],
+        "properties": {
+          "id": {"type": "string"},
+          "code": {"type": "string"}
+        }
+      }
+    },
+    "response_schema": {
+      "type": "object",
+      "description": "Machine-readable description of the response widget."
+    },
+    "canonical": {
+      "type": "object",
+      "description": "The canonical structured answer used for scoring."
+    },
+    "accepted_equivalence": {
+      "type": "array",
+      "description": "All structured answers accepted as correct.",
+      "items": {"type": "object"}
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "title", "body", "decisiveness"],
+        "properties": {
+          "kind": {
+            "enum": ["test", "trace", "spec_case", "execution_table"]
+          },
+          "title": {"type": "string"},
+          "body": {"type": "string"},
+          "table": {
+            "type": ["object", "null"],
+            "properties": {
+              "columns": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            }
+          },
+          "decisiveness": {
+            "enum": ["partial", "decisive"]
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "required": ["text", "structured", "correct", "source"],
+      "properties": {
+        "text": {"type": "string"},
+        "structured": {"type": "object"},
+        "correct": {"type": "boolean"},
+        "source": {"type": "string"},
+        "model": {"type": ["string", "null"]},
+        "model_revision": {"type": ["string", "null"]},
+        "model_hash": {"type": ["string", "null"]}
+      }
+    },
+    "annotations": {
+      "type": "object",
+      "properties": {
+        "plausibility": {"type": ["number", "null"]},
+        "annotator_1": {"type": ["string", "null"]},
+        "annotator_2": {"type": ["string", "null"]},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "flags": {
+      "type": "object",
+      "properties": {
+        "model_seeded": {"type": "boolean"},
+        "needs_review": {"type": "boolean"}
+      }
+    }
+  }
+}

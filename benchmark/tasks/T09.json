@@ -1,0 +1,53 @@
+{
+  "id": "T09",
+  "status": "draft",
+  "type": "check_spec",
+  "difficulty": "medium",
+  "title": "Numbers differing in one bit",
+  "prompt": "Specification: Return True if and only if two non-negative integers differ in exactly one bit position. The implementation below should satisfy this specification for all valid inputs. Does it? Answer COMPLIANT or NOT_COMPLIANT.",
+  "code": "def is_Power_Of_Two (x): \n    return x and (not(x & (x - 1))) \ndef differ_At_One_Bit_Pos(a,b): \n    return is_Power_Of_Two(a ^ b)\n",
+  "response_schema": {
+    "widget": "compliance_form",
+    "fields": {
+      "compliant": "boolean"
+    }
+  },
+  "canonical": {
+    "compliant": true
+  },
+  "accepted_equivalence": [
+    {
+      "compliant": true
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "The implementation passes the test suite",
+      "body": "PASS: assert differ_At_One_Bit_Pos(13,9) == True\nPASS: assert differ_At_One_Bit_Pos(15,8) == False\nPASS: assert differ_At_One_Bit_Pos(2,4) == False",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "The implementation does not satisfy the specification.",
+    "structured": {
+      "compliant": false
+    },
+    "correct": false,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 6. Original implementation satisfies the specification. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

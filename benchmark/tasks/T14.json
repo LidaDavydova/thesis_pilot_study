@@ -1,0 +1,104 @@
+{
+  "id": "T14",
+  "status": "draft",
+  "type": "select_impl",
+  "difficulty": "low",
+  "title": "Filtering even numbers",
+  "prompt": "Specification: Return a list of all even integers from the input, preserving their original order. Four candidate implementations follow. Which candidate satisfies the specification for all valid inputs? Select one candidate.",
+  "code": "",
+  "response_schema": {
+    "widget": "candidate_select",
+    "fields": {
+      "candidate": "string (one of the candidate ids)"
+    }
+  },
+  "canonical": {
+    "candidate": "C"
+  },
+  "accepted_equivalence": [
+    {
+      "candidate": "C"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "execution_table",
+      "title": "Candidate executions against the test suite",
+      "body": "Each candidate was executed against the same test suite.\n\nTest 1: assert filter_evennumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[2, 4, 6, 8, 10]\nTest 2: assert filter_evennumbers([10,20,45,67,84,93])==[10,20,84]\nTest 3: assert filter_evennumbers([5,7,9,8,6,4,3])==[8,6,4]",
+      "table": {
+        "columns": [
+          "Candidate",
+          "Test 1",
+          "Test 2",
+          "Test 3"
+        ],
+        "rows": [
+          [
+            "A",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "B",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "C",
+            "pass",
+            "pass",
+            "pass"
+          ],
+          [
+            "D",
+            "fail",
+            "pass",
+            "fail"
+          ]
+        ]
+      },
+      "decisiveness": "decisive"
+    }
+  ],
+  "recommendation": {
+    "text": "Candidate C satisfies the specification.",
+    "structured": {
+      "candidate": "C"
+    },
+    "correct": true,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 41.  Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "code": "def filter_evennumbers(nums):\n even_nums = list(filter(lambda x: x%2 != 0, nums))\n return even_nums\n"
+    },
+    {
+      "id": "B",
+      "code": "def filter_evennumbers(nums):\n even_nums = list(filter(lambda x: x > 0, nums))\n return even_nums\n"
+    },
+    {
+      "id": "C",
+      "code": "def filter_evennumbers(nums):\n even_nums = list(filter(lambda x: x%2 == 0, nums))\n return even_nums\n"
+    },
+    {
+      "id": "D",
+      "code": "def filter_evennumbers(nums):\n even_nums = list(filter(lambda x: x%2 == 0 and x > 5, nums))\n return even_nums\n"
+    }
+  ]
+}

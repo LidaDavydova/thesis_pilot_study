@@ -1,0 +1,33 @@
+{
+  "rotations": 3,
+  "orders": [
+    "ABC",
+    "CBA"
+  ],
+  "condition_codes": [
+    "none",
+    "static",
+    "adaptive"
+  ],
+  "base_assignment": {
+    "T01": 0,
+    "T02": 1,
+    "T03": 2,
+    "T04": 0,
+    "T05": 1,
+    "T06": 2,
+    "T07": 0,
+    "T08": 0,
+    "T09": 1,
+    "T10": 1,
+    "T11": 2,
+    "T12": 2,
+    "T13": 0,
+    "T14": 0,
+    "T15": 1,
+    "T16": 1,
+    "T17": 2,
+    "T18": 2
+  },
+  "notes": "Base condition indices: 0=none, 1=static, 2=adaptive. Realised condition for rotation r is (base + r) % 3. The assignment pairs one correct and one incorrect recommendation within each task type in every condition."
+}

@@ -1,0 +1,53 @@
+{
+  "id": "T08",
+  "status": "draft",
+  "type": "check_spec",
+  "difficulty": "high",
+  "title": "Tiling a 3 by n board",
+  "prompt": "Specification: Return the number of ways to tile a 3 x n board with 2 x 1 dominoes, for n >= 2. The implementation below should satisfy this specification for all valid inputs. Does it? Answer COMPLIANT or NOT_COMPLIANT.",
+  "code": "def count_ways(n): \n    A = [0] * (n + 1) \n    B = [0] * (n + 1) \n    A[0] = 1\n    A[1] = 0\n    B[0] = 0\n    B[1] = 1\n    for i in range(2, n+1): \n        A[i] = A[i - 2] + 2 * B[i - 1] \n        B[i] = A[i - 1] + B[i - 2] \n    return A[n]\n",
+  "response_schema": {
+    "widget": "compliance_form",
+    "fields": {
+      "compliant": "boolean"
+    }
+  },
+  "canonical": {
+    "compliant": true
+  },
+  "accepted_equivalence": [
+    {
+      "compliant": true
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "The implementation passes the test suite",
+      "body": "PASS: assert count_ways(2) == 3\nPASS: assert count_ways(8) == 153\nPASS: assert count_ways(12) == 2131",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "The implementation satisfies the specification.",
+    "structured": {
+      "compliant": true
+    },
+    "correct": true,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 5. Original implementation satisfies the specification. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

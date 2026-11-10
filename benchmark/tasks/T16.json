@@ -1,0 +1,104 @@
+{
+  "id": "T16",
+  "status": "draft",
+  "type": "select_impl",
+  "difficulty": "medium",
+  "title": "Multiplication without the star operator",
+  "prompt": "Specification: Return x * y for integers x and y, using recursion and addition rather than the * operator. Four candidate implementations follow. Which candidate satisfies the specification for all valid inputs? Select one candidate.",
+  "code": "",
+  "response_schema": {
+    "widget": "candidate_select",
+    "fields": {
+      "candidate": "string (one of the candidate ids)"
+    }
+  },
+  "canonical": {
+    "candidate": "D"
+  },
+  "accepted_equivalence": [
+    {
+      "candidate": "D"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "execution_table",
+      "title": "Candidate executions against the test suite",
+      "body": "Each candidate was executed against the same test suite.\n\nTest 1: assert multiply_int(10,20)==200\nTest 2: assert multiply_int(5,10)==50\nTest 3: assert multiply_int(4,8)==32",
+      "table": {
+        "columns": [
+          "Candidate",
+          "Test 1",
+          "Test 2",
+          "Test 3"
+        ],
+        "rows": [
+          [
+            "A",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "B",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "C",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "D",
+            "pass",
+            "pass",
+            "pass"
+          ]
+        ]
+      },
+      "decisiveness": "decisive"
+    }
+  ],
+  "recommendation": {
+    "text": "Candidate A satisfies the specification.",
+    "structured": {
+      "candidate": "A"
+    },
+    "correct": false,
+    "source": "perturbed_model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 127.  Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": true,
+    "needs_review": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "code": "def multiply_int(x, y):\n    if y < 0:\n        return -multiply_int(x, -y)\n    elif y == 0:\n        return 0\n    elif y == 1:\n        return x\n    else:\n        return x + multiply_int(x, y - 2)\n"
+    },
+    {
+      "id": "B",
+      "code": "def multiply_int(x, y):\n    if y < 0:\n        return -multiply_int(x, -y)\n    elif y == 0:\n        return 0\n    elif y == 1:\n        return x\n    else:\n        return x + 1 + multiply_int(x, y - 1)\n"
+    },
+    {
+      "id": "C",
+      "code": "def multiply_int(x, y):\n    if y < 0:\n        return -multiply_int(x, -y)\n    elif y == 0:\n        return 0\n    elif y == 1:\n        return x\n    else:\n        return multiply_int(x, y - 1) + 1\n"
+    },
+    {
+      "id": "D",
+      "code": "def multiply_int(x, y):\n    if y < 0:\n        return -multiply_int(x, -y)\n    elif y == 0:\n        return 0\n    elif y == 1:\n        return x\n    else:\n        return x + multiply_int(x, y - 1)\n"
+    }
+  ]
+}

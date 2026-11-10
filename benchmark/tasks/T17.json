@@ -1,0 +1,104 @@
+{
+  "id": "T17",
+  "status": "draft",
+  "type": "select_impl",
+  "difficulty": "low",
+  "title": "Maximum difference in an array",
+  "prompt": "Specification: Given a non-empty array and its length n, return the difference between its largest and smallest elements. Four candidate implementations follow. Which candidate satisfies the specification for all valid inputs? Select one candidate.",
+  "code": "",
+  "response_schema": {
+    "widget": "candidate_select",
+    "fields": {
+      "candidate": "string (one of the candidate ids)"
+    }
+  },
+  "canonical": {
+    "candidate": "B"
+  },
+  "accepted_equivalence": [
+    {
+      "candidate": "B"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "execution_table",
+      "title": "Candidate executions against the test suite",
+      "body": "Each candidate was executed against the same test suite.\n\nTest 1: assert max_Abs_Diff((2,1,5,3),4) == 4\nTest 2: assert max_Abs_Diff((9,3,2,5,1),5) == 8\nTest 3: assert max_Abs_Diff((3,2,1),3) == 2",
+      "table": {
+        "columns": [
+          "Candidate",
+          "Test 1",
+          "Test 2",
+          "Test 3"
+        ],
+        "rows": [
+          [
+            "A",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "B",
+            "pass",
+            "pass",
+            "pass"
+          ],
+          [
+            "C",
+            "fail",
+            "fail",
+            "fail"
+          ],
+          [
+            "D",
+            "fail",
+            "fail",
+            "fail"
+          ]
+        ]
+      },
+      "decisiveness": "decisive"
+    }
+  ],
+  "recommendation": {
+    "text": "Candidate B satisfies the specification.",
+    "structured": {
+      "candidate": "B"
+    },
+    "correct": true,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 145.  Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "code": "def max_Abs_Diff(arr,n): \n    minEle = arr[0] \n    maxEle = arr[0] \n    for i in range(1, n): \n        minEle = min(minEle,arr[i]) \n        maxEle = max(maxEle,arr[i]) \n    return (maxEle - arr[0])\n"
+    },
+    {
+      "id": "B",
+      "code": "def max_Abs_Diff(arr,n): \n    minEle = arr[0] \n    maxEle = arr[0] \n    for i in range(1, n): \n        minEle = min(minEle,arr[i]) \n        maxEle = max(maxEle,arr[i]) \n    return (maxEle - minEle)\n"
+    },
+    {
+      "id": "C",
+      "code": "def max_Abs_Diff(arr,n): \n    minEle = arr[0] \n    maxEle = arr[0] \n    for i in range(1, n): \n        minEle = min(minEle,arr[i]) \n        maxEle = max(maxEle,arr[i]) \n    return (maxEle - minEle + 1)\n"
+    },
+    {
+      "id": "D",
+      "code": "def max_Abs_Diff(arr,n): \n    minEle = arr[0] \n    maxEle = arr[0] \n    for i in range(1, n): \n        minEle = min(minEle,arr[i]) \n        maxEle = max(maxEle,arr[i]) \n    return (maxEle - minEle - 1)\n"
+    }
+  ]
+}

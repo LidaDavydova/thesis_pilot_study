@@ -1,0 +1,18 @@
+{
+  "T05": {
+    "structured": {"has_bug": true, "line": 5},
+    "rationale": "The model identified the bug but pointed at the guarded body instead of the loop header. Moved the line to the adjacent faulty statement (line 5) to obtain a plausible incorrect recommendation."
+  },
+  "T13": {
+    "structured": {"candidate": "A"},
+    "rationale": "All fifteen samples chose the correct candidate B. Candidate A is a plausible ordering mistake (strings before integers) and is the documented minimal perturbation."
+  },
+  "T16": {
+    "structured": {"candidate": "A"},
+    "rationale": "All fifteen samples chose the correct candidate D. Candidate A uses y - 2 instead of y - 1 and is the documented minimal perturbation."
+  },
+  "T18": {
+    "structured": {"candidate": "A"},
+    "rationale": "All fifteen samples chose the correct candidate C. Candidate A returns the last occurrence instead of the first and is the documented minimal perturbation."
+  }
+}

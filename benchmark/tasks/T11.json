@@ -1,0 +1,53 @@
+{
+  "id": "T11",
+  "status": "draft",
+  "type": "check_spec",
+  "difficulty": "medium",
+  "title": "One less than twice the reverse",
+  "prompt": "Specification: For a positive integer n, return True if and only if 2 * reverse(n) == n + 1, where reverse(n) is the decimal representation of n read backwards with no leading zeros. The implementation below should satisfy this specification for all valid inputs. Does it? Answer COMPLIANT or NOT_COMPLIANT.",
+  "code": "def rev(num):    \n    rev_num = 0\n    while (num > 0):  \n        rev_num = (rev_num * 10 + num % 10) \n        num = num // 10  \n    return rev_num  \ndef check(n):    \n    return (2 * rev(n) == n + 1)\n",
+  "response_schema": {
+    "widget": "compliance_form",
+    "fields": {
+      "compliant": "boolean"
+    }
+  },
+  "canonical": {
+    "compliant": true
+  },
+  "accepted_equivalence": [
+    {
+      "compliant": true
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "The implementation passes the test suite",
+      "body": "PASS: assert check(70) == False\nPASS: assert check(23) == False\nPASS: assert check(73) == True",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "The implementation does not satisfy the specification.",
+    "structured": {
+      "compliant": false
+    },
+    "correct": false,
+    "source": "model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 56. Original implementation satisfies the specification. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": false,
+    "needs_review": true
+  }
+}

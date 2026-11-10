@@ -1,0 +1,57 @@
+{
+  "id": "T05",
+  "status": "draft",
+  "type": "identify_bug",
+  "difficulty": "low",
+  "title": "Detecting non-prime numbers",
+  "prompt": "Specification: For an integer n >= 2, return True if n is composite and False if n is prime. The function below is intended to satisfy this specification. Does it contain a bug? If yes, give the line number of the faulty statement (1-based, counting the `def` line as line 1). If the bug spans several lines, give the first line of the faulty statement. If there is no bug, set the line to null.",
+  "code": "import math\ndef is_not_prime(n):\n    result = False\n    for i in range(2,int(math.sqrt(n))):\n        if n % i == 0:\n            result = True\n    return result\n",
+  "response_schema": {
+    "widget": "bug_form",
+    "fields": {
+      "has_bug": "boolean",
+      "line": "integer|null (1-based, required when has_bug is true)"
+    }
+  },
+  "canonical": {
+    "has_bug": true,
+    "line": 4
+  },
+  "accepted_equivalence": [
+    {
+      "has_bug": true,
+      "line": 4
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "test",
+      "title": "A test that exposes the defect",
+      "body": "Test: assert is_not_prime(35) == True\nExpected: True\nActual: False",
+      "table": null,
+      "decisiveness": "partial"
+    }
+  ],
+  "recommendation": {
+    "text": "I found a bug on line 5.",
+    "structured": {
+      "has_bug": true,
+      "line": 5
+    },
+    "correct": false,
+    "source": "perturbed_model",
+    "model": "qwen3-8b-q8_0",
+    "model_revision": null,
+    "model_hash": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6"
+  },
+  "annotations": {
+    "plausibility": null,
+    "annotator_1": null,
+    "annotator_2": null,
+    "notes": "Adapted from MBPP task_id 3. The loop misses the integer square root, so some composites look prime. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only. Recommendation selected from offline Qwen3-8B samples; correctness is analysis-only."
+  },
+  "flags": {
+    "model_seeded": true,
+    "needs_review": true
+  }
+}
